@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Previsão do tempo</title>
+    <link rel="stylesheet" href="css/bootstrap-4.3.1/bootstrap.css">
+    <link rel="stylesheet" href="css/barra-governo.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js/class/Locality.js"></script>
+    <script type="text/javascript" src="js/class/WeatherForecast.js"></script>
+    <script type="text/javascript" src="js/WeatherForecast-script.js"></script>
+    <script type="text/javascript" src="js/tools.js"></script>
+
+</head>
+
+<body>
+    <div id="barra-brasil">
+        <div id="wrapper-barra-brasil">
+            <div class="brasil-flag"><a href="http://brasil.gov.br" class="link-barra">Brasil</a></div><span
+                class="acesso-info"><a href="http://www.servicos.gov.br/?pk_campaign=barrabrasil" class="link-barra"
+                    id="barra-brasil-orgao">Serviços</a></span>
+            <nav>
+                <ul id="lista-barra-brasil" class="list">
+                    <li><a href="#" id="menu-icon"></a></li>
+                    <li class="list-item first"><a href="http://www.simplifique.gov.br"
+                            class="link-barra">Simplifique!</a></li>
+                    <li class="list-item"><a href="http://brasil.gov.br/participacao-social"
+                            class="link-barra">Participe</a></li>
+                    <li class="list-item"><a href="http://www.acessoainformacao.gov.br" class="link-barra">Acesso à
+                            informação</a></li>
+                    <li class="list-item"><a href="http://www.planalto.gov.br/legislacao"
+                            class="link-barra">Legislação</a></li>
+                    <li class="list-item last last-item"><a href="http://www.brasil.gov.br/canais-do-executivo-federal"
+                            class="link-barra">Canais</a></li>
+                </ul>
+            </nav>
+            <span id="brasil-vlibras"><a class="logo-vlibras" id="logovlibras" href="#"></a><span
+                    class="link-vlibras"><img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" class="barralazy"
+                        data-src="//barra.brasil.gov.br/imagens/vlibras.gif" width="132" height="116">&nbsp;<br>O
+                    conteúdo desse portal pode ser acessível em Libras usando o <a
+                        href="http://www.vlibras.gov.br">VLibras</a></span></span>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="container">
+            <div class="header-menu-anchor">
+                <span>Ir para conteúdo | Ir para menu | Ir para busca | Ir para o rodapé</span>
+            </div>
+            <div class="header-menu-social">
+                <span>Acessibilidade |</span>
+                <span>Auto contraste |</span>
+                <span>Mapa do site</span>
+            </div>
+            <div class="clear"></div>
+            <div class="float-right" style="margin-top: 4%">
+
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInput">Name</label>
+                        <input type="text" class="form-control mb-2" id="cidade" placeholder="Informe a cidade!" autofocus>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" onclick="getSevenDaysWeatherForecast()" class="btn btn-outline-light mb-2"
+                            data-toggle="modal" data-target="#exampleModal">Previsão do Tempo</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="header-title-page">
+                <span><img src="img/logo_inpe.png" width="80" height="80"></span>
+                <span class="header-title-page-font">Difusão Conhecimento CPTEC</span>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="header-menu">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+                    aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active link-hover">
+                            <a class="nav-link" href="#" style="color:white">Home <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Tempo</a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Clima</a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Previsão Numérica</a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Satélite</a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Ondas</a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Dados Observacionais</a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Instrumentação Met.</a>
+                        </li>
+                        <li class="nav-item link-hover">
+                            <a class="nav-link" href="#" style="color:white">Qualidade do Ar</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container container-body-margin">
+        <div class="row">
+            <div class="col-sm ">
+                <div class="bd-example">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/blue.png" width="100%" height="380" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>First slide label</h5>
+                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/green.png" width="100%" height="380" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Second slide label</h5>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/brown.jpg" width="100%" height="380" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Third slide label</h5>
+                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row margin-container-2 margin-row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem ipsum dolor sit amet</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem ipsum dolor sit amet</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row margin-container-2 margin-row">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Lorem ipsum dolor sit amet.<span class="text-muted">ultrices sit amet
+                        arcu.</span></h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit posuere eros,
+                    vitae consequat dolor sagittis nec. Quisque leo leo, ultrices eget ultrices in, ultrices sit amet
+                    arcu. Aenean tincidunt odio non felis placerat mollis eu id arcu. Morbi condimentum congue orci ac
+                    tempus. Proin nec lorem venenatis, vehicula eros ac, sollicitudin turpis. Orci varius natoque
+                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis posuere, ante eu maximus
+                    porta, velit magna semper augue, tincidunt semper urna leo sit amet massa. Nunc feugiat, massa
+                    interdum pretium commodo, massa leo sollicitudin ipsum, ut volutpat metus diam quis dui. Proin
+                    auctor justo in condimentum egestas. Aenean at gravida turpis. Curabitur venenatis lacinia
+                    malesuada. Ut nec imperdiet arcu, nec semper risus. Cras cursus maximus sapien a eleifend.
+                    Pellentesque massa nunc, vestibulum a purus at, tempor scelerisque lacus. Nullam condimentum
+                    vehicula nunc eget posuere.</p>
+            </div>
+            <div class="col-md-5">
+                <div class="card" style="margin-bottom: 2%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Lorem ipsum dolor sit amet</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit
+                            posuere eros,
+                            vitae consequat dolor sagittis nec. Quisque leo leo, ultrices eget ultrices in, ultrices sit
+                            amet
+                            arcu. Aenean tincidunt odio non felis.</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-bottom: 2%;">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Lorem ipsum dolor sit amet</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit
+                            posuere eros,
+                            vitae consequat dolor sagittis nec. Quisque leo leo, ultrices eget ultrices in, ultrices sit
+                            amet
+                            arcu. Aenean tincidunt odio non felis.</p>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Lorem ipsum dolor sit amet</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin blandit
+                            posuere eros,
+                            vitae consequat dolor sagittis nec. Quisque leo leo, ultrices eget ultrices in, ultrices sit
+                            amet
+                            arcu. Aenean tincidunt odio non felis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                    mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                    mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                    porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                    ut fermentum massa.</p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img src="img/previsaotempo.png" width="100%" height="100%">
+                </div>
+                <div class="modal-body">
+                    <h5 id="city" class="text-center"></h5>
+                    <table class="table-responsive table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Dia</th>
+                                <th scope="col">Máxima</th>
+                                <th scope="col">Mínima</th>
+                                <th scope="col">Tempo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="modal-body1" id="tbl">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap-4.3.1/bootstrap.js"></script>
+    <script src="js/tools.js"></script>
+</body>
+
+</html>
